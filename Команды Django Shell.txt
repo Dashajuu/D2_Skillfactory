@@ -1,0 +1,71 @@
+#Создать двух пользователей (с помощью метода User.objects.create_user('username'))
+user1 = User.objects.create_user('Майкл Скотт')
+user2 = User.objects.create_user('Мария Ракушкина')
+
+#Создать два объекта модели Author, связанные с пользователями.
+Author.objects.create(user = user1)
+Author.objects.create(user = user2)
+
+#Добавить 4 категории в модель Category.
+Category.objects.create(subject = 'Экономика')
+Category.objects.create(subject = 'Экология')
+Category.objects.create(subject = 'Технологии')
+Category.objects.create(subject = 'Интернет')
+Category.objects.create(subject = 'Политика')
+
+
+#Добавить 2 статьи и 1 новость.
+article1 = Post.objects.create(typePost = Post.articlePost, namePost = 'Сахалин и Ямал возглавили рейтинг Фонда защиты окружающей среды', textPost = 'Сахалинская область и Ямало-Ненецкий автономный округ возглавили рейтинг некоммерческого Фонда защиты окружающей среды "Экофон", сообщается на сайте организации.', author = Author.objects.get(pk=1))
+
+article2 = Post.objects.create(typePost = Post.articlePost, namePost = 'Российский экспорт АПК вырос в 2 раза за 6 лет реализации нацпроекта', textPost = 'Российский экспорт продукции агропромышленного комплекса увеличился вдвое за 6 лет реализации нацпроекта "Международная кооперация и экспорт".', author = Author.objects.get(pk=2))
+
+news1 = Post.objects.create(typePost = Post.newsPost, namePost = 'Краш-тест Apple Vision Pro: защитное стекло гарнитуры разбивается при падении с высоты более двух метров', textPost = 'Видеоблогер с YouTube-канала AppleTrack опубликовал ролик, в котором проверил новую гарнитуру Apple Vision Pro на прочность.', author = Author.objects.get(pk=1))
+
+
+#Присвоить им категории (как минимум в одной статье/новости должно быть не меньше 2 категорий).
+
+cat_eco = Category.objects.get(subject = 'Экология')
+cat_economy = Category.objects.get(subject = 'Экономика')
+cat_tech = Category.objects.get(subject = 'Технологии')
+cat_internet = Category.objects.get(subject = 'Интернет')
+cat_politics = Category.objects.get(subject = 'Политика')
+
+article1.category.set([cat_eco, cat_economy])
+article2.category.set([cat_eco, cat_politits])
+news1.category.set([cat_tech, car_internet])
+
+
+#Создать как минимум 4 комментария к разным объектам модели Post (в каждом объекте должен быть как минимум один комментарий).
+
+Comment.objects.create(post = Post.objects.get(pk=3), user = User.objects.get(pk=2), textCom = 'Славно славно')
+Comment.objects.create(post = Post.objects.get(pk=3), user = User.objects.get(pk=1), textCom = 'Ну такое себе')
+Comment.objects.create(post = Post.objects.get(pk=1), user = User.objects.get(pk=1), textCom = 'Правильно')
+Comment.objects.create(post = Post.objects.get(pk=2), user = User.objects.get(pk=2), textCom = 'Мда, экспорт-импорт')
+
+#Применяя функции like() и dislike() к статьям/новостям и комментариям, скорректировать рейтинги этих объектов.
+Comment.objects.get(pk=1).like()
+Comment.objects.get(pk=2).dislike()
+
+Post.objects.get(pk=3).like()
+Post.objects.get(pk=1).dislike()
+
+#Обновить рейтинги пользователей.
+Author.objects.get(pk=2).update_rating()
+
+#Вывести username и рейтинг лучшего пользователя (применяя сортировку и возвращая поля первого объекта).
+best_user = Author.objects.order_by('-ratingUser')
+{best_user[0].userAuth.username: best_user[0].ratingUser}
+
+
+#Вывести дату добавления, username автора, рейтинг, заголовок и превью лучшей статьи, основываясь на лайках/дислайках к этой статье.
+best_post = Post.objects.order_by('-ratingPost')
+for i in best_post[:1]:
+	i.dataPost.day, i.dataPost.month, i.dataPost.year
+	i.author.userAuth.username
+	i.ratingPost
+	i.namePost
+	i.preview()
+
+#Вывести все комментарии (дата, пользователь, рейтинг, текст) к этой статье.
+Comment.objects.filter(post = best_post[0]).values('dateCom', 'user', 'ratingCom', 'textCom')
+

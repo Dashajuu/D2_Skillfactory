@@ -1,0 +1,32 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+News
+{% endblock title %}
+
+{% block content %}
+    <h3>Количество новостей: {{newslist|length}}</h3>
+    {% if newslist %}
+        <table>
+            {% for newlist in newslist %}
+            <tr>
+                <td>
+                    {{ newlist.namePost|censor }}
+                </td>
+                <td>
+                    {{ newlist.dataPost|date:'d.M.y' }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ newlist.textPost|truncatewords:20|censor }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2>Новостей нет :(</h2>
+    {% endif %}
+{% endblock content %}

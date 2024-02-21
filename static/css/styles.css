@@ -246,7 +246,7 @@ sup {
 
 a {
   color: var(--bs-link-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:hover {
   color: var(--bs-link-hover-color);
@@ -7996,6 +7996,11 @@ textarea.form-control-lg {
 
 .text-decoration-none {
   text-decoration: none !important;
+}
+
+.a-decoration {
+  text-decoration: none !important;
+  color: rgba(var(--bs-info-rgb), var(--bs-text-opacity)) !important;
 }
 
 .text-decoration-underline {

@@ -4,15 +4,18 @@
 {% load custom_tags %}
 
 {% block title %}
-News
+Поиск
 {% endblock title %}
 
 {% block content %}
-   <h4><a href="search/"><input type="button" value="Искать пост"/></a></h4>
-    <h3>Количество постов: {{ total_post }}</h3>
-    {% if newslist %}
+    <form action="" method="get">
+        {{ filterset.form.as_p }}
+        <input type="submit" value="Поиск">
+    </form>
+    {% if news_search %}
+    <b><p>Найдено постов: {{ filter_post }}</p></b>
         <table>
-            {% for newlist in newslist %}
+            {% for newlist in news_search %}
             <tr>
                 <td>
                     <a href="{{ newlist.pk }}">

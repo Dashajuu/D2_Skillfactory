@@ -27,7 +27,10 @@
         <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5">
-              <h1>NEWS</h1>
+              <h1><a href="{% url 'post_list' %}">NEWS</a></h1>
+              <hr>
+              <a href="{% url 'article_create' %}"><input type="button" value="Создать статью"></a>
+              <a href="{% url 'news_create' %}"><input type="button" value="Создать новость"></a>
               <hr>
               {% block content %}
               {% endblock content %}

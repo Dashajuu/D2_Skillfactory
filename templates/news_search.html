@@ -24,6 +24,19 @@
                 <td>
                     {{ newlist.dataPost|date:'d.M.y' }}
                 </td>
+                {% if perms.news.change_post or perms.news.delete_post %}
+                <td rowspan="2">
+                    {% if newlist.typePost == 'N' %}
+                        <a href="{% url 'news_update' newlist.id %}">Изменить новость</a>
+                        <br>
+                        <a href="{% url 'news_delete' newlist.id %}">Удалить</a>
+                    {% else %}
+                        <a href="{% url 'article_update' newlist.id %}">Изменить статью</a>
+                        <br>
+                        <a href="{% url 'article_delete' newlist.id %}">Удалить</a>
+                    {% endif %}
+                </td>
+                {% endif %}
             </tr>
             <tr>
                 <td>

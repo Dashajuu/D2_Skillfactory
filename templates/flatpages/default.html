@@ -44,6 +44,11 @@
               {% endif %}
               {% block content %}
               {% endblock content %}
+              {% if request.user.is_authenticated %}
+                <hr>
+                <h4><a href="{% url 'subscriptions' %}"><input type="button" value="Подписка на новости"></a></h4><br>
+              {% endif %}
             </div>
+        </div>
     </body>
 </html>

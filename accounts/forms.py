@@ -8,3 +8,5 @@ class CustomSignupForm(SignupForm):
         auth_user = Group.objects.get(name='auth users')
         user.groups.add(auth_user)
         return user
+
+

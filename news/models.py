@@ -87,3 +87,15 @@ class Comment(models.Model):
     def get_rat(self):
         return self.ratingCom
 
+
+class Subscriber(models.Model):
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='subscriptions',
+    )
+    category = models.ForeignKey(
+        to='Category',
+        on_delete=models.CASCADE,
+        related_name='subscriptions',
+    )

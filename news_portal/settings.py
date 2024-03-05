@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.yandex'
+    'allauth.socialaccount.providers.yandex',
+    'django_apscheduler',
 ]
 
 SITE_ID = 1
@@ -152,13 +153,22 @@ AUTHENTICATION_BACKENDS = [
 # Регистрация по email
 
 ACCOUNT_EMAIL_REQUIRED = True
-
 ACCOUNT_UNIQUE_EMAIL = True
-
 ACCOUNT_USERNAME_REQUIRED = False
-
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_FORMS = {'signup': 'accounts.forms.CustomSignupForm'}
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'News Portal '
+
+# Работа с почтой
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = 'exampledjango@mail.ru'
+EMAIL_HOST_PASSWORD = 'iAcmtZAESHtNB1dKdaYG'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = 'exampledjango@mail.ru'

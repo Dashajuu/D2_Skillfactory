@@ -9,7 +9,7 @@ News
 
 {% block content %}
    <h4><a href="search/"><input type="button" value="Искать пост"/></a></h4>
-    <h3>Количество постов: {{ total_post }}</h3>
+    <p>Количество постов: {{ total_post }}</p>
     {% if newslist %}
         <table>
             {% for newlist in newslist %}
@@ -55,7 +55,7 @@ News
         <a href="?{% url_replace page=1 %}">1</a>
             {% if page_obj.previous_page_number != 1 %}
                 ...
-                <a href="?{% url_replace page=page_obj.previous_page_number %}">{{page_obj.previous_page_number}}}</a>
+                <a href="?{% url_replace page=page_obj.previous_page_number %}">{{page_obj.previous_page_number}}</a>
             {% endif %}
     {% endif %}
 

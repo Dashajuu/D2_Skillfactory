@@ -163,11 +163,11 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = 'News Portal '
 
 # Работа с почтой
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 2525
 EMAIL_HOST_USER = 'exampledjango@mail.ru'
-EMAIL_HOST_PASSWORD = 'iAcmtZAESHtNB1dKdaYG'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
